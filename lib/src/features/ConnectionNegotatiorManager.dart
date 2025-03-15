@@ -50,8 +50,11 @@ class ConnectionNegotiatorManager {
       }
     });
     if (_connection.authenticated) {
-      waitingNegotiators.add(NegotiatorWithSupportedNonzas(
-          ServiceDiscoveryNegotiator.getInstance(_connection), []));
+      //
+      // [2025/02/26 22:08 KSH]속도개선을 위해 불필요한 부분 막기.
+      //
+      // waitingNegotiators.add(NegotiatorWithSupportedNonzas(
+      //     ServiceDiscoveryNegotiator.getInstance(_connection), []));
     }
     negotiateNextFeature();
   }
@@ -101,6 +104,9 @@ class ConnectionNegotiatorManager {
     if (streamManagement.isResumeAvailable()) {
       supportedNegotiatorList.add(streamManagement);
     }
+    //
+    // [2025/02/26 22:08 KSH]속도개선을 위해 불필요한 부분 막기.
+    //
     supportedNegotiatorList
         .add(BindingResourceConnectionNegotiator(_connection));
     supportedNegotiatorList
@@ -108,8 +114,12 @@ class ConnectionNegotiatorManager {
     supportedNegotiatorList.add(SessionInitiationNegotiator(_connection));
     // supportedNegotiatorList
     //     .add(ServiceDiscoveryNegotiator.getInstance(_connection));
-    supportedNegotiatorList.add(CarbonsNegotiator.getInstance(_connection));
-    supportedNegotiatorList.add(MAMNegotiator.getInstance(_connection));
+
+    //
+    // [2025/02/26 22:08 KSH]속도개선을 위해 불필요한 부분 막기.
+    //
+    // supportedNegotiatorList.add(CarbonsNegotiator.getInstance(_connection));
+    // supportedNegotiatorList.add(MAMNegotiator.getInstance(_connection));
   }
 
   void stateListener(NegotiatorState state) {

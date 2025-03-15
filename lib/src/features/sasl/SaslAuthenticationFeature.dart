@@ -15,10 +15,13 @@ class SaslAuthenticationFeature extends Negotiator {
   final Set<SaslMechanism> _supportedMechanisms = {};
 
   SaslAuthenticationFeature(this._connection, this._password) {
-    _supportedMechanisms.add(SaslMechanism.SCRAM_SHA_1);
-    _supportedMechanisms.add(SaslMechanism.SCRAM_SHA_256);
+    //
+    // [2025/02/26 22:08 KSH]속도개선을 위해 PLAIN방식을 사용하도록.
+    //
+    // _supportedMechanisms.add(SaslMechanism.SCRAM_SHA_1);
+    // _supportedMechanisms.add(SaslMechanism.SCRAM_SHA_256);
     _supportedMechanisms.add(SaslMechanism.PLAIN);
-    _supportedMechanisms.add(SaslMechanism.ANONYMOUS);
+    // _supportedMechanisms.add(SaslMechanism.ANONYMOUS);
     expectedName = 'SaslAuthenticationFeature';
   }
 
